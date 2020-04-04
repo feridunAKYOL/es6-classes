@@ -1,45 +1,74 @@
 // the challenge
 
 const literalA = {
-  entries: {
-    x: '123',
-    sa: 67
-  },
-  write: function (key, value) {
-    // ... code ...
-  },
-  read: function (key) {
-    if (this.entries.hasOwnProperty(key)) {
-      // ... code ...
-    } else {
-      // ... code ...
-    }
-  },
-  remove: function (key) {
-    if (this.entries.hasOwnProperty(key)) {
-      // ... code ...
-    } else {
-      // ... code ...
-    }
-  }
+	entries: {
+		x: '123',
+		sa: 67
+	},
+	write: function(key, value) {
+		// ... code ...
+		this.entries[key] = value;
+	},
+	read: function(key) {
+		if (this.entries.hasOwnProperty(key)) {
+			// ... code ...
+			return this.entries.key;
+		} else {
+			// ... code ...
+			return 'no key: ' + key;
+		}
+	},
+	remove: function(key) {
+		if (this.entries.hasOwnProperty(key)) {
+			// ... code ...
+		} else {
+			// ... code ...
+		}
+	}
 };
 
 const literalB = {
-  entries: {
-    chico: 'marx',
-    gummo: 'marx',
-    harpo: 'marx',
-    groucho: 'marx',
-    zeppo: 'marx',
-  },
-  write: function (key, value) { },
-  read: function (key) { },
-  remove: function (key) { }
+	entries: {
+		chico: 'marx',
+		gummo: 'marx',
+		harpo: 'marx',
+		groucho: 'marx',
+		zeppo: 'marx'
+	},
+	write: function(key, value) {},
+	read: function(key) {},
+	remove: function(key) {}
 };
 
 // the solution
 
-class EntriesManager { };
+class EntriesManager {
+	constructor(obj) {
+		if (obj != null) {
+			this.entries = obj;
+		} else {
+			this.entries = {};
+		}
+	}
+	write(key, value) {
+		this.entries[key] = value;
+	}
+	read(val) {
+		if (!this.entries.hasOwnProperty(val)) {
+			throw new Error(`no key: ${val}`);
+		} else {
+			return this.entries[val];
+		}
+	}
+	remove(val) {
+		if (this.entries.hasOwnProperty(val)) {
+			delete this.entries[val];
+			return true;
+		} else {
+			return false;
+		}
+	}
+}
 
 // these two lines are correct!  don't change them
 const instanceA = new EntriesManager({ a: 1, b: 2 });
@@ -57,8 +86,10 @@ const test2b = instanceB.hasOwnProperty('entries');
 console.assert(test2a, 'Test 2.A - own properties');
 console.assert(test2b, 'Test 2.B');
 
-const test3a = !instanceA.hasOwnProperty('write') && !instanceA.hasOwnProperty('read') && !instanceA.hasOwnProperty('remove');
-const test3b = !instanceB.hasOwnProperty('write') && !instanceB.hasOwnProperty('read') && !instanceB.hasOwnProperty('remove');
+const test3a =
+	!instanceA.hasOwnProperty('write') && !instanceA.hasOwnProperty('read') && !instanceA.hasOwnProperty('remove');
+const test3b =
+	!instanceB.hasOwnProperty('write') && !instanceB.hasOwnProperty('read') && !instanceB.hasOwnProperty('remove');
 console.assert(test3a, 'Test 3.A - not-own properties');
 console.assert(test3b, 'Test 3.B');
 
@@ -77,10 +108,10 @@ console.assert(test5b, 'Test 5.B');
 const test6a = instanceA.read('b') === 2;
 let test6b;
 try {
-  instanceB.read('b');
-  test6b = false;
+	instanceB.read('b');
+	test6b = false;
 } catch (err) {
-  test6b = err.message === 'no key: b';
+	test6b = err.message === 'no key: b';
 }
 console.assert(test6a, 'Test 6.A - read');
 console.assert(test6b, 'Test 6.B');
