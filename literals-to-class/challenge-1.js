@@ -1,31 +1,41 @@
 // the challenge
 
 const literalA = {
-  numbers: [-1, 1, 0, -2, 2],
-  get evens() {
-    return this.numbers.filter(num => num % 2 === 0);
-  },
-  get odds() {
-    return this.numbers.filter(num => num % 2 !== 0);
-  }
+	numbers: [ -1, 1, 0, -2, 2 ],
+	get evens() {
+		return this.numbers.filter((num) => num % 2 === 0);
+	},
+	get odds() {
+		return this.numbers.filter((num) => num % 2 !== 0);
+	}
 };
 
 const literalB = {
-  numbers: [3, 67, -21, 6, -4],
-  get evens() {
-    return this.numbers.filter(num => num % 2 === 0);
-  },
-  get odds() {
-    return this.numbers.filter(num => num % 2 !== 0);
-  }
+	numbers: [ 3, 67, -21, 6, -4 ],
+	get evens() {
+		return this.numbers.filter((num) => num % 2 === 0);
+	},
+	get odds() {
+		return this.numbers.filter((num) => num % 2 !== 0);
+	}
 };
 
 // the solution
 
-class EvenOdd { };
+class EvenOdd {
+	constructor(num) {
+		this.numbers = [ ...num ];
+	}
+	get evens() {
+		return this.numbers.filter((num) => num % 2 === 0);
+	}
+	get odds() {
+		return this.numbers.filter((num) => num % 2 !== 0);
+	}
+}
 
-const instanceA = _;
-const instanceB = _;
+const instanceA = new EvenOdd([ -1, 1, 0, -2, 2 ]);
+const instanceB = new EvenOdd([ 3, 67, -21, 6, -4 ]);
 
 // the tests
 
@@ -54,8 +64,8 @@ const test5b = instanceB.odds.toString() === '3,67,-21';
 console.assert(test5a, 'Test 5.A - odds');
 console.assert(test5b, 'Test 5.B');
 
-instanceA.numbers = [5, 4, 3, 2, 1, 0];
-instanceB.numbers = [0, -1, -2, -3, -4, -5];
+instanceA.numbers = [ 5, 4, 3, 2, 1, 0 ];
+instanceB.numbers = [ 0, -1, -2, -3, -4, -5 ];
 
 const test6a = instanceA.evens.toString() === '4,2,0';
 const test6b = instanceB.evens.toString() === '0,-2,-4';
