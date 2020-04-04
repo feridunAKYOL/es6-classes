@@ -1,11 +1,11 @@
 # es6-classes/
 
-> 4/1/2020, 11:40:27 AM 
+> 2020-4-4 23:14:35 
 
-## ./ - error
+## ./ - pass
 
 
 ### sub-directories
 
-* [literals-to-class/](./literals-to-class/REVIEW.md) - error
+* [literals-to-class/](./literals-to-class/REVIEW.md) - pass
 
