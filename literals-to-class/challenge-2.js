@@ -1,34 +1,64 @@
 // the challenge
 
 const literalA = {
-  state: {
-    max: -Infinity,
-    min: Infinity
-  },
-  get spread() {
-    return this.state.max - this.state.min;
-  },
-  addNumber(newNum) {
-    // ... code ...
-  }
+	state: {
+		max: -Infinity,
+		min: Infinity
+	},
+	get spread() {
+		return this.state.max - this.state.min;
+	},
+	addNumber(newNumber) {
+		if (newNumber > this.max) {
+			this.max = newNumber;
+		}
+		if (newNumber < this.min) {
+			this.min = newNumber;
+		}
+	}
 };
 
 const literalB = {
-  state: {
-    max: -Infinity,
-    min: Infinity
-  },
-  get spread() {
-    return this.state.max - this.state.min;
-  },
-  addNumber(newNum) {
-    // ... code ...
-  }
+	state: {
+		max: -Infinity,
+		min: Infinity
+	},
+	get spread() {
+		return this.state.max - this.state.min;
+	},
+	addNumber(newNumber) {
+		if (newNumber > this.max) {
+			this.max = newNumber;
+		}
+		if (newNumber < this.min) {
+			this.min = newNumber;
+		}
+	}
 };
 
 // the solution
 
-class MaxMin { };
+class MaxMin {
+	constructor() {
+		this.state = {
+			max: -Infinity,
+			min: Infinity
+		};
+	}
+
+	get spread() {
+		return this.state.max - this.state.min;
+	}
+	addNumber(newNumber) {
+		if (newNumber > this.state.max) {
+			this.state.max = newNumber;
+		}
+		if (newNumber < this.state.min) {
+			this.state.min = newNumber;
+		}
+		return this.state;
+	}
+}
 
 // these two lines are correct! don't change them
 const instanceA = new MaxMin();
